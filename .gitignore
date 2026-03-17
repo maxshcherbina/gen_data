@@ -18,3 +18,7 @@ setup_smoke_test_files/
 # Data directory: keep placeholder only
 02_activities/data/*
 !02_activities/data/.gitkeep
+.Rproj.user
+.RData
+.Rhistory
+gen_data.Rproj
