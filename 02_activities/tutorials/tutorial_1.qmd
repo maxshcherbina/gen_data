@@ -55,14 +55,14 @@ head ./02_activities/data/gwa.qc.fam
 head ./02_activities/data/gwa.qc.bim
 ```
 
-| **Column Name** | **Description** |
-|------------------------------------|------------------------------------|
-| **CHR** | Chromosome number |
-| **SNP** | SNP ID (e.g., rs number) |
-| **CM** | Genetic distance (usually 0) |
-| **BP** | Physical position in base pairs |
-| **A1** | PLINK's alternative allele |
-| **A2** | the other allele (reference allele; mostly major alleles) |
+| **Column Name** | **Description**                                           |
+|-------------------|-----------------------------------------------------|
+| **CHR**         | Chromosome number                                         |
+| **SNP**         | SNP ID (e.g., rs number)                                  |
+| **CM**          | Genetic distance (usually 0)                              |
+| **BP**          | Physical position in base pairs                           |
+| **A1**          | PLINK's alternative allele                                |
+| **A2**          | the other allele (reference allele; mostly major alleles) |
 
 ### 3. Understanding the .bed file
 
@@ -101,7 +101,7 @@ plink2 --bfile ./02_activities/data/gwa.qc --hardy --out ./02_activities/data/gw
 
 This produces gwa_qc_hwe.hardy containing observed and expected genotype counts plus p-values.
 
-```{r,message=FALSE, warning=FALSE}
+```{r, message=FALSE, warning=FALSE}
 # View HWE results
 hwe <- fread("./02_activities/data/gwa_qc_hwe.hardy")
 head(hwe)
@@ -146,18 +146,22 @@ head(freq)
 
 #### Step 1: Create SNP and sample list files
 
-```{bash,message=FALSE, warning=FALSE}
-# Create SNP list file with 4 example SNPs
+Create SNP list file with 4 example SNPs
+
+```{bash, message=FALSE, warning=FALSE}
 setopt interactivecomments
 printf "%s\n" rs1525873 rs2902663 rs343376 rs3813199 > ./02_activities/data/snplist.txt
-
-# Create sample list file with header + 3 samples
-# echo "FID IID" > ./02_activities/data/samplist.txt
-# echo "0 A2001" >> ./02_activities/data/samplist.txt
-# echo "2 A2003" >> ./02_activities/data/samplist.txt
-# echo "5 A2006" >> ./02_activities/data/samplist.txt
-
 ```
+
+Create sample list file with header + 3 samples
+
+echo "FID IID" \> ./02_activities/data/samplist.txt
+
+echo "0 A2001" \>\> ./02_activities/data/samplist.txt
+
+echo "2 A2003" \>\> ./02_activities/data/samplist.txt
+
+echo "5 A2006" \>\> ./02_activities/data/samplist.txt
 
 #### Step 2: Subset SNPs and/or samples
 
@@ -318,7 +322,7 @@ print(p1)
 
 ```
 
-**Interpretation**: We performed logistic regression to test the association between genotype (rs1525873) and the binary phenotype. The regression coefficient for rs1525873 is 1.93140 (p <2e-16), indicating that each additional copy of the T allele is associated with increased odds of being a case. The significant p-value suggests evidence of an association between this SNP and the phenotype in our sample.
+**Interpretation**: We performed logistic regression to test the association between genotype (rs1525873) and the binary phenotype. The regression coefficient for rs1525873 is 1.93140 (p \<2e-16), indicating that each additional copy of the T allele is associated with increased odds of being a case. The significant p-value suggests evidence of an association between this SNP and the phenotype in our sample.
 
 In practice, when testing genetic associations, we include additional covariates in the model, such as age, sex, and principal components to adjust for confounding effects. We will cover this in more detail later in the course.
 
