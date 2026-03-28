@@ -22,3 +22,4 @@ setup_smoke_test_files/
 .RData
 .Rhistory
 gen_data.Rproj
+02_activities/tutorials/tutorial_1.qmd
